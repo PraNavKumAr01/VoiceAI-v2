@@ -24,6 +24,10 @@ class QueryRequest(BaseModel):
     conversation_id: str
     image: Optional[str]
 
+class ChatHistoryRequest(BaseModel):
+    user_id: str
+    conversation_id: str
+    
 app = FastAPI()
 
 agent = WorkFlow().local_agent
@@ -33,6 +37,18 @@ def format_chat_history(chat_history):
     for pair in chat_history:
         formatted_history += f"Human: {pair[0]}\nAI: {pair[1]}\n"
     return formatted_history
+
+@app.post("get-chat-history")
+async def get_chat_history(request: ChatHistoryRequest):
+    try:
+        existing_records = list(conversations.find({"user_id": request.user_id, "conversation_id": request.conversation_id}).sort("timestamp"))
+        if existing_records:
+            chat_history = [[record["user_message"], record["agent_response"]] for record in existing_records if record["user_message"] and record["agent_response"]]
+
+            return {
+                "chat_history" : chat_history
+            }
+
 
 @app.post("/text-to-llm")
 async def text_to_llm(request: QueryRequest):
