@@ -1,0 +1,9 @@
+deepgram-sdk
+langchain
+langchain-community
+langchain-core
+langchain_groq
+fastapi
+google-generativeai
+pymongo
+uvicorn
