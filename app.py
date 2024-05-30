@@ -38,7 +38,7 @@ def format_chat_history(chat_history):
         formatted_history += f"Human: {pair[0]}\nAI: {pair[1]}\n"
     return formatted_history
 
-@app.post("get-chat-history")
+@app.post("/get-chat-history")
 async def get_chat_history(request: ChatHistoryRequest):
     try:
         existing_records = list(conversations.find({"user_id": request.user_id, "conversation_id": request.conversation_id}).sort("timestamp"))
