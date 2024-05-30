@@ -99,39 +99,6 @@ class Nodes:
         gen_wiki_query = wiki_query_chain.invoke({"question": question, "chat_history" : chat_history})
         wiki_query = gen_wiki_query["query"]
         return {"wiki_query": wiki_query}
-
-    def transform_email_search_query(self, state):
-        """
-        Transform user question to email search
-
-        Args:
-            state (dict): The current graph state
-
-        Returns:
-            state (dict): Appended search query
-        """
-        
-        print("Step: Optimizing Query for Gmail Search")
-        question = state['question']
-        gen_mail_search_query = gmail_search_query_chain.invoke({"question": question})
-        mail_search_query = gen_mail_search_query["query"]
-        return {"mail_search_query": mail_search_query}
-
-    def transform_email_send_query(self, state):
-        """
-        Transform user question to send email
-
-        Args:
-            state (dict): The current graph state
-
-        Returns:
-            state (dict): Appended send mail query
-        """
-        
-        print("Step: Optimizing Query for sending Gmail")
-        question = state['question']
-        gen_mail_send_query = gmail_send_query_prompt.invoke({"question": question})
-        return {"email": gen_mail_send_query}
     
     def image_search(self, state):
         """
@@ -236,51 +203,6 @@ class Nodes:
             "video_links" : []
         }
 
-    def email_search(self, state):
-        """
-        Email search based on the question
-
-        Args:
-            state (dict): The current graph state
-
-        Returns:
-            state (dict): Appended email results to context
-        """
-
-        search_query = state['mail_search_query']
-        print(f'Step: Searching Inbox for: "{search_query}"')
-        
-        emails = searchMail._run(search_query)
-        emails = [mail["snippet"] for mail in emails]
-        return {
-            "context": "".join(emails),
-            "video_links" : []
-        }
-
-    def email_send(self, state):
-        """
-        Sending email based on the question
-
-        Args:
-            state (dict): The current graph state
-
-        Returns:
-            Status: Email sent
-        """
-
-        email_content = state['email']
-        receiver = email_content['receiver']
-        body = email_content['body']
-        subject = email_content['subject']
-        print(f'Step: Sending email to : "{receiver}"')
-        
-        sendMail._run(body, receiver,subject)
-        
-        return {
-            "generation" : "Email sent succesfully",
-            "video_links" : []
-        }
-
     def evaluate_search_results(self, state):
         """
         Evaluate the search results and decide whether to proceed with generation
@@ -330,12 +252,6 @@ class Nodes:
         elif output['choice'] == "wiki_search":
             print("Step: Routing Query to Wikipedia Search")
             return "wikisearch"
-        elif output['choice'] == "gmail_search":
-            print("Step: Routing query to Gmail Search")
-            return "gmailsearch"
-        elif output['choice'] == "send_gmail":
-            print("Step: Routing Query to Gmail sender")
-            return "sendgmail"
         elif output['choice'] == "image_search":
             print("Step: Routing Query Image analyser")
             return "imagesearch"
