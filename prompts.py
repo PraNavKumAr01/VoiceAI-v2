@@ -48,7 +48,7 @@ router_prompt = PromptTemplate(
     Use the wolfram aplha for questions that require calculations or mathematical solutions
     Otherwise, you can skip and go straight to the generation phase to respond.
     You do not need to be stringent with the keywords in the question related to these topics.
-    Give a binary choice 'web_search', 'youtube_search', 'wolfram_alpha', 'wiki_search', 'gmail_search','send_gmail','image_search' or 'generate' based on the question. 
+    Give a binary choice 'web_search', 'youtube_search', 'wolfram_alpha', 'wiki_search','image_search' or 'generate' based on the question. 
     If the value image available is True, always return image_search as it means there is an image and we need to analyse the image first
     Image Available: {image_available}
     If this above value is True, always return image_search
