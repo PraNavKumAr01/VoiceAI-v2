@@ -13,7 +13,7 @@ load_dotenv()
 
 os.environ["GROQ_API_KEY"] = os.environ.get("GROQ_API_KEY")
 os.environ["GOOGLE_CSE_ID"] = os.environ.get("GOOGLE_CSE_ID")
-os.environ["GOOGLE_SEARCH_API_KEY"] = os.environ.get("GOOGLE_SEARCH_API_KEY")
+os.environ["GOOGLE_API_KEY"] = os.environ.get("GOOGLE_SEARCH_API_KEY")
 os.environ["WOLFRAM_ALPHA_APPID"] = os.environ.get("WOLFRAM_ALPHA_APPID")
 
 llm = ChatGroq(temperature=0, model_name="llama3-70b-8192")
