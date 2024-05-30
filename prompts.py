@@ -136,46 +136,6 @@ wiki_query_prompt = PromptTemplate(
     input_variables=["question", "chat_history"],
 )
 
-gmail_search_query_prompt = PromptTemplate(
-    template="""
-    
-    You are an expert at crafting gmail search queries for research questions.
-    You have to generate queries strictly abiding by these formats
-    The Gmail query. Example filters include from:sender,"
-        " to:recipient, subject:subject"
-        " in:folder, after:year/mo/date *you can only use date for after in the format of numbers, like year 2023, mo 03, date 21*, "
-        "before:year/mo/date, label:label_name"
-        ' "exact phrase".'
-        " Search newer/older than using d (day), m (month), and y (year): "
-        "newer_than:2d, older_than:1y."
-        " Attachments with extension example: filename:pdf. Multiple term"
-        " matching example: from:amy OR from:david.
-    For things like last sent or latest, just use from:sender and then from the list of emails take the first one
-    For things like this, last weeek or this, last month instead of date format, use newer_than: 7d (d for days) or newer_than: 1m
-    More often than not, a user will ask a basic question that they wish to learn more about, however it might not be in the best format. 
-    Reword their query to be the most effective gmail search query according to the formal possible.
-    Return the JSON with a single key 'query' with no premable or explanation. 
-    
-    Question to transform: {question} 
-    
-    """,
-    input_variables=["question"],
-)
-
-gmail_send_query_prompt = PromptTemplate(
-    template="""
-    
-    You are an expert at crafting gmail content that includes content and the subject for the email based on the query.
-    More often than not, a user will ask a basic question that they wish to learn more about, however it might not be in the best format. 
-    Reword their query to be the most effective gmail content according to the format possible.
-    Return the JSON with a keys 'body' which has the mail content 'subject' which has the subject for the mail and 'reciever' which has the mail of the reciever, with no premable or explanation. 
-    
-    Question to transform: {question} 
-    
-    """,
-    input_variables=["question"],
-)
-
 eval_result_prompt = PromptTemplate(
     template="""
     
