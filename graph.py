@@ -15,7 +15,7 @@ class WorkFlow():
         workflow.add_node("transform_web_query", nodes.transform_web_query)
         workflow.add_node("transform_yt_query", nodes.transform_yt_query)
         workflow.add_node("transform_wiki_query",nodes.transform_wiki_query)
-        workflow.add_node("transform_math_query",nodes.transform_math_query)ry)
+        workflow.add_node("transform_math_query",nodes.transform_math_query)
         workflow.add_node("generate", nodes.generate)
 
         # Build the edges
