@@ -44,10 +44,14 @@ async def get_chat_history(request: ChatHistoryRequest):
         existing_records = list(conversations.find({"user_id": request.user_id, "conversation_id": request.conversation_id}).sort("timestamp"))
         if existing_records:
             chat_history = [[record["user_message"], record["agent_response"]] for record in existing_records if record["user_message"] and record["agent_response"]]
+        else:
+            chat_history = "Chat history not found"
 
-            return {
-                "chat_history" : chat_history
-            }
+        return {
+            "chat_history" : chat_history
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)) 
 
 
 @app.post("/text-to-llm")
