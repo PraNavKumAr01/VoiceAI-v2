@@ -20,10 +20,7 @@ class GraphState(TypedDict):
     math_query: str
     math_answer: str
     video_links: list
-    emails: list
     videos_found : bool
-    mail_search_query: str
-    email: dict
     context : str
     chat_history: str
     logs: list
