@@ -3,6 +3,7 @@ langchain
 langchain-community
 langchain-core
 langchain_groq
+langgraph
 fastapi
 google-generativeai
 pymongo
