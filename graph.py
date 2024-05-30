@@ -12,14 +12,10 @@ class WorkFlow():
         workflow.add_node("youtubesearch", nodes.youtube_search)
         workflow.add_node("wikisearch", nodes.wiki_search)
         workflow.add_node("mathsolve", nodes.math_solve)
-        workflow.add_node("gmailsearch", nodes.email_search)
-        workflow.add_node("sendgmail", nodes.email_send)
         workflow.add_node("transform_web_query", nodes.transform_web_query)
         workflow.add_node("transform_yt_query", nodes.transform_yt_query)
         workflow.add_node("transform_wiki_query",nodes.transform_wiki_query)
-        workflow.add_node("transform_math_query",nodes.transform_math_query)
-        workflow.add_node("transform_email_search_query",nodes.transform_email_search_query)
-        workflow.add_node("transform_email_send_query",nodes.transform_email_send_query)
+        workflow.add_node("transform_math_query",nodes.transform_math_query)ry)
         workflow.add_node("generate", nodes.generate)
 
         # Build the edges
@@ -30,8 +26,6 @@ class WorkFlow():
                 "youtubesearch": "transform_yt_query",
                 "wikisearch": "transform_wiki_query",
                 "mathsolve": "transform_math_query",
-                "gmailsearch" : "transform_email_search_query",
-                "sendgmail": "transform_email_send_query",
                 "imagesearch": "imagesearch",
                 "generate": "generate",
             },
@@ -76,12 +70,6 @@ class WorkFlow():
         # Handle solving maths problems
         workflow.add_edge("transform_math_query", "mathsolve")
         workflow.add_edge("mathsolve", "generate")
-
-        workflow.add_edge("transform_email_search_query", "gmailsearch")
-        workflow.add_edge("gmailsearch", "generate")
-
-        workflow.add_edge("transform_email_send_query", "sendgmail")
-        workflow.add_edge("sendgmail", END)
 
         workflow.add_edge("generate", END)
 
