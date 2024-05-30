@@ -4,8 +4,6 @@ from langchain_community.tools.youtube.search import YouTubeSearchTool
 from langchain_community.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 from langchain_community.tools.wikipedia.tool import WikipediaQueryRun
 from langchain_community.utilities.wikipedia import WikipediaAPIWrapper
-from langchain_community.tools.gmail.search import GmailSearch
-from langchain_community.tools.gmail.send_message import GmailSendMessage
 from langchain_core.tools import Tool
 import google.generativeai as genai
 import os
@@ -41,9 +39,3 @@ wolfram_math_tool = WolframAlphaAPIWrapper()
 
 # WIKIPEDIA SEARCH TOOL
 wiki_search_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper(doc_content_chars_max = 2000))
-
-# GMAIL SEARCH TOOL
-searchMail = GmailSearch()
-
-# GMAIL SEND MESSEGE TOOL
-sendMail = GmailSendMessage()
