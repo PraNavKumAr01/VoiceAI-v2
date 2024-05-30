@@ -14,9 +14,5 @@ math_query_chain = math_query_prompt | llm | JsonOutputParser()
 
 wiki_query_chain = wiki_query_prompt | llm | JsonOutputParser()
 
-gmail_search_query_chain = gmail_search_query_prompt | llm | JsonOutputParser()
-
-gmail_send_query_prompt = gmail_send_query_prompt | llm | JsonOutputParser()
-
 eval_result_chain = eval_result_prompt | llm | JsonOutputParser()
 
