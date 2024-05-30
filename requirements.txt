@@ -5,6 +5,11 @@ langchain-core
 langchain_groq
 langgraph
 fastapi
+wolframalpha
 google-generativeai
 pymongo
 uvicorn
+google-api-python-client 
+youtube_search 
+wolframalpha 
+wikipedia 
