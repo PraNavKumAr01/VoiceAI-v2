@@ -17,6 +17,8 @@ generate_prompt = PromptTemplate(
         If the user as asked for video assistance, the video links will be found and you will recieve a conformation whether the links were retireved or not, If True, just give a brief description about the user and ask the user, if False, generate an answer for the query and let the user know that you failed to retireve any relevent videos, If the confirmation is an empty string "", just answer the question normally
         If the user had asked a mathematical problem, you will receive a solved answer to that question and using that explain the answer to the user
         You will always receive the previous chat history, use that information to always keep track of information
+        Today's Date : 
+        {date}
         User Query : 
         {question}
         This is the previous conversation you had with this user, use this information to answer follow up questions or to recall any information from earlier conversation
@@ -33,7 +35,7 @@ generate_prompt = PromptTemplate(
         
     
     """,
-    input_variables=["question","chat_history", "context","videos_found","math_answer"],
+    input_variables=["date", "question","chat_history", "context","videos_found","math_answer"],
 )
 
 router_prompt = PromptTemplate(
