@@ -3,6 +3,13 @@ from tools import *
 import base64
 from io import BytesIO
 from PIL import Image
+from datetime import datetime
+
+now = datetime.now()
+day = now.day
+month = now.month
+year = now.year
+formatted_date = now.strftime("%d-%m-%Y")
 
 class Nodes:
 
@@ -24,7 +31,7 @@ class Nodes:
         math_answer = state["math_answer"]
         video_links = state["video_links"]
 
-        generation = generate_chain.invoke({"context": context,"chat_history": chat_history, "question": question, "videos_found": video_stat, "math_answer": math_answer})
+        generation = generate_chain.invoke({"date" : formatted_date, "context": context,"chat_history": chat_history, "question": question, "videos_found": video_stat, "math_answer": math_answer})
         return {"generation": generation, "video_links": video_links}
 
 
