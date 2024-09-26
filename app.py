@@ -34,6 +34,8 @@ app = FastAPI()
 origins = [
     "http://localhost:3000/session",
     "http://localhost:3000",
+    "https://vox-ai-bay.vercel.app,
+    "https://voxai-beta.vercel.app",
 ]
 
 app.add_middleware(
