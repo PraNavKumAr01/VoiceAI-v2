@@ -25,7 +25,11 @@ class Nodes:
         """
         print("Step: Generating Final Response")
         question = state["question"]
-        context = state["context"]
+        try:
+            context = state["context"]
+        except:
+            print("No Context Found")
+            context = ""
         chat_history = state["chat_history"]
         video_stat = state["videos_found"]
         math_answer = state["math_answer"]
