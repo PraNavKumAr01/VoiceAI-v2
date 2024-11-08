@@ -28,20 +28,21 @@ class Nodes:
         chat_history = state["chat_history"]
         try:
             context = state["context"]
+        except:
+            context = ""
+        try:
             video_stat = state["videos_found"]
+        except:
+            video_stat = False
+        try:
             math_answer = state["math_answer"]
+        except:
+            math_answer = ""
+        try:
             video_links = state["video_links"]
         except:
-            print("No Context Found")
-            print("No Video Search")
-            print("No Math Answer")
-            print("No Video Links")
-            context = ""
-            video_stat = False
-            math_answer = ""
             video_links = []
     
-
         generation = generate_chain.invoke({"date" : formatted_date, "context": context,"chat_history": chat_history, "question": question, "videos_found": video_stat, "math_answer": math_answer})
         return {"generation": generation, "video_links": video_links}
 
