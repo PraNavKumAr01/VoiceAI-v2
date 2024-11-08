@@ -60,7 +60,10 @@ class Nodes:
         print("Step: Optimizing Query for Web Search")
         question = state['question']
         chat_history = state['chat_history']
-        context = state['context']
+        try:
+            context = state['context']
+        except:
+            context = ""
         gen_web_query = web_query_chain.invoke({"question": question, "chat_history" : chat_history, "context" : context})
         web_search_query = gen_web_query["query"]
         return {"web_search_query": web_search_query}
